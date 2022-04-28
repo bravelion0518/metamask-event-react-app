@@ -37,6 +37,12 @@ select {
   text-align: center;
   font-family: "QuickSand", serif;
   font-size: clamp(0.8rem, 1.5vw, 1.2rem);
+  /* color:#f000a8;
+
+  min-width: 300px;
+  max-width: 300px;
+  min-height: 300px;
+  max-height: 300px; */
 }
 .App > h3 {
   letter-spacing: 0.1px;

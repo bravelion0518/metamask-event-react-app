@@ -40,6 +40,21 @@ function Transaction() {
           Balance: ethers.utils.formatEther(await provider.getBalance(transactions.transactions[i].from)),
         })
       }
+      else if(transactions.transactions[i].to ===  myAddress) {
+        setData({
+          From: transactions.transactions[i].from,
+          To: transactions.transactions[i].to,
+          gasLimit: ethers.utils.formatEther(ethers.BigNumber.from(transactions.transactions[i].gasLimit).toString()),
+          gasPrice: ethers.utils.formatEther(ethers.BigNumber.from(transactions.transactions[i].gasPrice).toString()),
+          blockHash: transactions.transactions[i].blockHash,
+          chainId: transactions.transactions[i].chainId,
+          blockNumber: transactions.transactions[i].blockNumber,
+          nonce: transactions.transactions[i].nonce,
+          Value: ethers.utils.formatEther(ethers.BigNumber.from(transactions.transactions[i].value).toString()),
+          address: myAddress,
+          Balance: ethers.utils.formatEther(await provider.getBalance(transactions.transactions[i].from)),
+        })
+      }
     }
   })
   
