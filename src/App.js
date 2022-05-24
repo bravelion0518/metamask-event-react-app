@@ -1,11 +1,13 @@
+
+import './App.css';
 import { useEffect, useState } from "react";
 import { useMetamask }         from "use-metamask";
 import { ethers }              from "ethers";
-import Web3                    from "web3";
+// import Web3                    from "web3";
 
-import Info                    from "./Info";
-import logo                    from "./assets/logo.svg";
-import styles                  from "./App.module.css";
+import Header                    from "./components/Header";
+import Event                    from "./components/Event";
+import Info                    from "./components/Info";
 
 function App() {
   const { connect, metaState }              = useMetamask();
@@ -15,10 +17,11 @@ function App() {
     if (metaState.isAvailable && !metaState.isConnected) {
       (async () => {
         try {
+          console.log("metaState=",metaState);
           if (web3interface === "ethers")
-            await connect(ethers.providers.Web3Provider, "any");
-          else if (web3interface === "web3")
-            await connect(Web3);
+            await connect(ethers.providers.Web3Provider, "any");       
+          // else if (web3interface === "web3")
+          //   await connect(Web3);
           else 
             throw Error(`Unknown web3 interface: ${web3interface}`);
         } catch (error) {
@@ -31,19 +34,12 @@ function App() {
   const handleWeb3Selector = (event) => setWeb3Interface(event.target.value);
 
   return (
-    <div className={styles.App}>
-      <h3>
-        {/* <code>
-          const {"{"}
-          <span className={styles.codeObject}>{"connect, metaState"}</span>
-          {"}"} = <span className={styles.codeFunction}>useMetamask();</span>
-        </code> */}
-        Extension
-      </h3>
-      <div className={styles.logo}>
-        <img src={logo} alt="useMetamask" />
-      </div>
-      {
+    <div className="container mx-[5vw]">
+
+      <Header/> 
+      <Event/>
+
+      {/* {
         metaState.isAvailable
         ? <Info state={metaState} web3Handler={handleWeb3Selector}/>
         : <div>
@@ -55,10 +51,12 @@ function App() {
             </code>
           </p>
         </div>
-      }
-      
+      } */}
+
+
     </div>
   );
 }
-
 export default App;
+
+
